@@ -72,8 +72,8 @@ def system(stdscr):
             curses.echo()
             stdscr.addstr(1, 0, f"You chose {menu[current_row]}", curses.color_pair(2))
             sel_course_id = my_input(stdscr, 2, 0, "Select a course id:")
-            sel_course = findCourseName(courses, sel_course_id)
-            sel_credit = findCourseCredit(courses, sel_course_id)
+            sel_course = CourseName(courses, sel_course_id)
+            sel_credit = CourseCredit(courses, sel_course_id)
             stdscr.addstr(4, 0, f"Course name: {sel_course}")
             for i, student in enumerate(students):
                 mark = my_input(stdscr, 5 + 2 * i, 0, f"Enter {student.name}'s mark:")
@@ -106,7 +106,7 @@ def system(stdscr):
             curses.echo()
             stdscr.addstr(1, 0, f"You chose {menu[current_row]}", curses.color_pair(2))
             sel_course_id = my_input(stdscr, 2, 0, "Select a course id:")
-            sel_course = findCourseName(courses, sel_course_id)
+            sel_course = CourseName(courses, sel_course_id)
             stdscr.addstr(4, 0, f"Course name: {sel_course}")
             stdscr.addstr(5, 0, f"Display students' marks:\n")
             for student in students:

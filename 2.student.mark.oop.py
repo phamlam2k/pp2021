@@ -3,6 +3,7 @@ ListStudent = [];
 ListCourse = [];
 Listmarks = [];
 
+
 class Student:
     def __init__(self,id,name,DoB):
         self.__id = id;
@@ -32,52 +33,92 @@ class Course:
     def getnameCourse(self):
         return self.__nameCourse;
 
+class StudentMark:
+    def __init__(self, student, course, mark):
+        self.__student = student
+        self.__course = course
+        self.__mark = mark
 
-def inputNumberofStudent():
-    numOfStudent = int(input("Input the number of Student : "));
-    return numOfStudent;
-def inputNumberofCourse():
-    numofCourse = int(input("Input the number of Course : "));
-    return numofCourse;
+    def getStudent(self):
+            return self.__student
 
-def infoStudent():
-    id = str(input("Input ID of Student : "));
-    name = str(input("Input Name of Student : "));
-    DoB = str(input("Input Date of Birth : "));
-    student = Student(id,name,DoB);
-    ListStudent.append(student);
+    def getCourse(self):
+        return self.__course
 
+    def describe(self):
+        print(self.__student.getId() + " " + self.__student.getName() + " "
+              + self.__course.getName() + " " + str(self.__mark))
 
-def infoCourse():
-    idCourse = str(input("Input ID of Course : "));
-    nameCourse = str(input("Input name of Course : "));
-    course = Course(idCourse,nameCourse);
-    ListCourse.append(course);
-
-def inputMark():
-    mark = float(input("Input mark of course : "));
-    Listmarks.append(mark);
-
-def getInfoStudent():
-    for i in range(0,len(ListStudent),1):
-        print("===== Student " + str(i+1)+" =====");
-        ListStudent[i].description();
-        ListCourse[i].string();
-        print("Diem mon hoc la : " + str(Listmarks[i]));
-
-numberStudent = inputNumberofStudent();
+def inputNumberOfStudents():
+    n = int(input("Input number of student: "))
+    return n
 
 
-for i in range(0,numberStudent,1):
-    infoStudent();
-    numberCourse = inputNumberofCourse();
-    for i in range(0,numberCourse,1):
-        infoCourse();
-        inputMark();
+def inputStudentInfor(students):
+    id = input("Input student's id: ")
+    name = input("Input student's name: ")
+    dOB = input("Input students's DOB: ")
+    student = Student(id, name, dOB)
+    students.append(student)
 
 
-getInfoStudent();
+def inputNumberOfCourses():
+    n = int(input("Input number of courses: "))
+    return n
 
+
+def inputCoursesInfor(courses):
+    id = input("Input courses's id: ")
+    name = input("Input courses's name: ")
+    course = Course(id, name)
+    courses.append(course)
+
+
+def inputMark(students, courses, studentMarks):
+    courseName = input("Input course's name to input marks: ")
+    for c in courses:
+        if c.getName() == courseName:
+            for s in students:
+                mark = float(input("Input " + s.getName() + "'s mark: "))
+                studentMark = StudentMark(s, c, mark)
+                studentMarks.append(studentMark)
+
+
+def listCourses(courses):
+    print("Course List:")
+    for c in courses:
+        c.string()
+
+
+def listStudents(students):
+    print("Student List:")
+    for s in students:
+        s.description()
+
+
+def showMarks(studentMarks):
+    courseName = input("Input course's name to show marks: ")
+    print("Student Marks for " + courseName)
+    for studentMark in studentMarks:
+        if courseName == studentMark.getCourse().getName():
+            studentMark.describe()
+
+
+n = inputNumberOfStudents()
+students = []
+courses = []
+studentMarks = []
+while n > 0:
+    inputStudentInfor(students)
+    n -= 1
+n = inputNumberOfCourses()
+while n > 0:
+    inputCoursesInfor(courses)
+    n -= 1
+inputMark(students, courses, studentMarks)
+listStudents(students)
+listCourses(courses)
+showMarks(studentMarks)
 
 
 

@@ -9,14 +9,14 @@ def my_input(stdscr, r, c, prompt_string):
     return _input
 
 
-def findCourseName(courses, course_id):
+def CourseName(courses, course_id):
     for course in courses:
         if course.get_id() == course_id:
             return course.get_name()
    
 
 
-def findCourseCredit(courses, course_id):
+def CourseCredit(courses, course_id):
     for course in courses:
         if course.get_id() == course_id:
             return course.get_credit()

@@ -1,6 +1,3 @@
-import math
-import numpy as np
-
 
 class Student:
     def __init__(self, __id, __name, __dob):
